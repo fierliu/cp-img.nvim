@@ -3,8 +3,11 @@ local config = require("cp-image.static").config
 
 local get_image_info = function(full_path)
 	local dir_path = string.match(full_path, "^([%s%S]*)/[^.^/]+.[^.^/]+$")
+	print("dir_path:" .. dir_path)
 	local image_type = string.match(full_path, "^[%s%S]*/[^.^/]+.([^.^/]+)$")
+	print("image_type: " .. image_type)
 	local file_name = string.match(full_path, "^[%s%S]*/([^.^/]+).[^.^/]+$")
+	print("file_name: " .. file_name)
 	return {
 		dir_path = dir_path,
 		image_type = image_type,
