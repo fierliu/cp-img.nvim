@@ -8,9 +8,12 @@ end
 
 local paste_image = function()
 	local root_path = core.file.root_path(static.config.root_pattern)
+	-- get markdown filename
 	local file_name = vim.fn.expand("%")
+	-- delete .md of filename
+	local file_name_short = string.sub(file_name, 0, string.len(file_name))
 	local default_path = static.config.path(root_path)
-	vim.ui.input({ prompt = "Image path: ", default = default_path .. file_name }, function(input)
+	vim.ui.input({ prompt = "Image path: ", default = default_path .. "/.assets/" .. file_name_short }, function(input)
 		if input == nil or input == default_path then
 			return
 		end
