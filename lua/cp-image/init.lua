@@ -18,7 +18,7 @@ local paste_image = function()
 	print(date)
 	vim.ui.input({ prompt = "Image path: ", default = default_path .. "/.assets/" .. file_name_short .. "/" }, function(input)
 			print(input)
-		if input == nil then
+		if input == nil or input == default_path then
 			input = default_path .. "/.assets/" .. file_name_short .. "/" .. date .. ".png"
 		end
 		local image_info = lib.get_image_info(input)
