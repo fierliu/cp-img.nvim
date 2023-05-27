@@ -11,11 +11,13 @@ local paste_image = function()
 	-- get markdown filename
 	local file_name = vim.fn.expand("%")
 	-- delete .md of filename
-	local file_name_short = string.sub(file_name, 0, string.len(file_name))
+	local file_name_short = string.sub(file_name, 0, string.len(file_name) - 3)
 	local default_path = static.config.path(root_path)
-	vim.ui.input({ prompt = "Image path: ", default = default_path .. "/.assets/" .. file_name_short }, function(input)
-		if input == nil or input == default_path then
-			return
+	-- how to get clipboard img's file type?
+	local date = os.date("%Y%m%d%H%M%S")
+	vim.ui.input({ prompt = "Image path: ", default = default_path .. "/.assets/" .. file_name_short .. "/" }, function(input)
+		if input == nil then
+			input = default_path .. "/.assets/" .. file_name_short .. "/" .. date .. ".png"
 		end
 		local image_info = lib.get_image_info(input)
 		if image_info.dir_path == nil or image_info.file_name == nil or image_info.image_type == nil then
