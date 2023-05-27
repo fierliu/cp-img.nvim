@@ -15,6 +15,7 @@ local paste_image = function()
 	local default_path = static.config.path(root_path)
 	-- how to get clipboard img's file type?
 	local date = os.date("%Y%m%d%H%M%S")
+	print(date)
 	vim.ui.input({ prompt = "Image path: ", default = default_path .. "/.assets/" .. file_name_short .. "/" }, function(input)
 		if input == nil then
 			input = default_path .. "/.assets/" .. file_name_short .. "/" .. date .. ".png"
