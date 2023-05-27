@@ -8,8 +8,9 @@ end
 
 local paste_image = function()
 	local root_path = core.file.root_path(static.config.root_pattern)
+	local file_name = vim.fn.expand("%")
 	local default_path = static.config.path(root_path)
-	vim.ui.input({ prompt = "Image path: ", default = default_path }, function(input)
+	vim.ui.input({ prompt = "Image path: ", default = default_path .. file_name }, function(input)
 		if input == nil or input == default_path then
 			return
 		end
